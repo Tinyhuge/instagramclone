@@ -1,5 +1,6 @@
 .post {
-  /* max-width: 500px; */
+   /* max-width: 500px;  */
+  
   width: 100%;
   background-color: white;
   border: 1px solid lightgray;
@@ -51,7 +52,7 @@
 .post__button {
   flex: 0;
   border: none;
-  color: #6082a3;
+  color: blue;
   background-color: transparent;
   border-top: 1px solid lightgray;
 }

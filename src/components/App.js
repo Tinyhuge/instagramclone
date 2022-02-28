@@ -35,6 +35,7 @@ import { Input } from "@mui/material";
 import { Avatar, IconButton } from "@mui/material";
 import { sendSignInLinkToEmail } from "firebase/auth";
 import CloseIcon from "@mui/icons-material/Close";
+import ArrowCircleUpIcon from "@mui/icons-material/ArrowCircleUp";
 import ImageUpload from "./ImageUpload";
 import Footer from "./Footer";
 
@@ -62,6 +63,10 @@ function App() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const moveToTop = () => {
+    //Scrolling Page to Top after uploading image..
+    document.body.scrollTop = document.documentElement.scrollTop = 0;
+  };
   const fetchData = async () => {
     const postDoc = collection(db, "posts");
     const postSnapshot = await getDocs(postDoc);
@@ -95,7 +100,6 @@ function App() {
     const q = query(collection(db, "posts"), orderBy("timestamp", "desc"));
     const subscribe = onSnapshot(q, (querySnapshot) => {
       querySnapshot.docs.map((doc) => {
-        //console.log(doc.data());
         setPosts(
           querySnapshot.docs.map((doc) => ({ id: doc.id, post: doc.data() }))
         );
@@ -254,7 +258,37 @@ function App() {
       <br />
       <br />
       <br />
-      <br /> <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      {user?.displayName ? (
+        <div>
+          <h4 className="app__uploadInst">Post Image Here:</h4>
+          <ImageUpload username={user.displayName} />
+        </div>
+      ) : (
+        <div className="app__uploadInst">
+          <h3>Sorry you need to Login to Upload...&#9989;</h3>
+          <p>
+            To comment on images in realtime and to upload your photos you need
+            to create account, if you don't have with us. Just click on signup
+            button and give your details.. &#9996; &#9996; &#9996;
+          </p>
+          <br />
+        </div>
+      )}
+      <br />
+      <br />
+      <div className="app__top">
+        <IconButton style={{ color: "blue" }}>
+          <ArrowCircleUpIcon onClick={moveToTop} fontSize="large" />
+        </IconButton>
+      </div>
+
       <div className="app__posts">
         {posts.map(({ id, post }) => (
           <Post
@@ -281,12 +315,23 @@ function App() {
         // onAfterRender={() => {}}
         // onFailure={() => {}}
       /> */}
-      {user?.displayName ? (
-        <ImageUpload username={user.displayName} />
+      {/* {user?.displayName ? (
+        <div>
+          <h4 className="app__uploadInst">Post Image Here:</h4>
+          <ImageUpload username={user.displayName} />
+        </div>
       ) : (
-        <h3>Sorry you need to Login to Upload</h3>
+        <div style={{ marginLeft: "20px", marginRight: "20px" }}>
+          <h3>Sorry you need to Login to Upload...&#9989;</h3>
+          <p>
+            To comment on images in realtime and to upload your photos you need
+            to create account, if you don't have with us. Just click on signup
+            button and give your details.. &#9996; &#9996; &#9996;
+          </p>
+          <br />
+        </div>
       )}
-      <br />
+      <br /> */}
       <Footer />
     </div>
   );

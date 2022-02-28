@@ -20,6 +20,7 @@
   padding-right: 20px;
   padding-top: 20px;
   padding-bottom: 20px;
+  
   background-color: white;
   object-fit: contain;
   border-bottom: 1px solid lightgray;
@@ -27,11 +28,27 @@
   align-items: center;
   justify-content: space-between;
   position: fixed;
+  top: 0;
+  z-index: 1;
   width: 100%;
 }
 .app__headerImageBtn{
   padding-right: 20px;
   margin-right: 20px;
+}
+
+.app__top{
+  text-align: end;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  
+}
+
+.app__uploadInst{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .app__headerImage {
